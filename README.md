@@ -1,1 +1,2 @@
-<img width="736" height="414" alt="Traffic light" src="https://github.com/user-attachments/assets/78a95ce1-caba-4d19-83cb-9eec65e8848a" />
+<img width="1024" height="384" alt="gastion" src="https://github.com/user-attachments/assets/982768ca-6c07-4ca1-973d-da40c5253f10" />
+

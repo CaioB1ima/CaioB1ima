@@ -1,1 +1,1 @@
-<img width="500" height="370" alt="topgear" src="https://github.com/user-attachments/assets/fa8b0301-869d-4e11-b2c4-a71c11eed764" />
+<img width="736" height="414" alt="Traffic light" src="https://github.com/user-attachments/assets/78a95ce1-caba-4d19-83cb-9eec65e8848a" />

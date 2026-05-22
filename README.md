@@ -1,4 +1,3 @@
-## Hello World! My name is Caio.
 <div align="center">
 
 <div align="center">

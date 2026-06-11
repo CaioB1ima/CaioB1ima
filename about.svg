@@ -1,0 +1,136 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .pixel-font { font-family: 'Press Start 2P', 'Courier New', monospace; }
+      .blink { animation: blink 1s step-end infinite; }
+      @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+      .slide-in { animation: slideIn 0.6s ease forwards; }
+      @keyframes slideIn { from{transform:translateX(-20px);opacity:0} to{transform:translateX(0);opacity:1} }
+      .float { animation: float 4s ease-in-out infinite; }
+      @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+      .scanline { animation: scan 5s linear infinite; }
+      @keyframes scan { 0%{transform:translateY(-200px)} 100%{transform:translateY(200px)} }
+      .type1 { animation: appear 0.1s 0.3s steps(1) both; }
+      .type2 { animation: appear 0.1s 0.6s steps(1) both; }
+      .type3 { animation: appear 0.1s 0.9s steps(1) both; }
+      .type4 { animation: appear 0.1s 1.2s steps(1) both; }
+      .type5 { animation: appear 0.1s 1.5s steps(1) both; }
+      @keyframes appear { from{opacity:0} to{opacity:1} }
+      .bar1 { animation: growBar 1.5s 0.5s ease forwards; transform-origin: left; }
+      .bar2 { animation: growBar 1.5s 0.8s ease forwards; transform-origin: left; }
+      .bar3 { animation: growBar 1.5s 1.1s ease forwards; transform-origin: left; }
+      .bar4 { animation: growBar 1.5s 1.4s ease forwards; transform-origin: left; }
+      @keyframes growBar { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+    </style>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1a2e"/>
+      <stop offset="100%" stop-color="#1a1228"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="200" fill="url(#bg2)"/>
+  
+  <!-- Scanline -->
+  <rect class="scanline" x="0" width="800" height="2" fill="white" opacity="0.03"/>
+
+  <!-- Section title -->
+  <text x="30" y="38" font-family="'Press Start 2P', monospace" font-size="11" fill="#e8c87a" filter="url(#glow)">▶ PLAYER.INFO</text>
+  <rect x="30" y="45" width="740" height="1" fill="#7ecfff" opacity="0.3"/>
+
+  <!-- Avatar pixel art (simple character) -->
+  <g transform="translate(50, 65)" class="float">
+    <!-- Head -->
+    <rect x="8" y="0" width="20" height="20" fill="#f4c38a"/>
+    <!-- Eyes -->
+    <rect x="11" y="6" width="4" height="4" fill="#2a1a0a"/>
+    <rect x="19" y="6" width="4" height="4" fill="#2a1a0a"/>
+    <!-- Mouth -->
+    <rect x="13" y="14" width="8" height="2" fill="#c07050"/>
+    <!-- Hair -->
+    <rect x="8" y="0" width="20" height="4" fill="#2a1a0a"/>
+    <rect x="6" y="2" width="4" height="6" fill="#2a1a0a"/>
+    <!-- Body -->
+    <rect x="4" y="20" width="28" height="24" fill="#1a4a8a"/>
+    <!-- Arms -->
+    <rect x="0" y="20" width="6" height="16" fill="#1a4a8a"/>
+    <rect x="30" y="20" width="6" height="16" fill="#1a4a8a"/>
+    <!-- Hands -->
+    <rect x="0" y="36" width="6" height="6" fill="#f4c38a"/>
+    <rect x="30" y="36" width="6" height="6" fill="#f4c38a"/>
+    <!-- Legs -->
+    <rect x="6" y="44" width="10" height="18" fill="#1a2a4a"/>
+    <rect x="20" y="44" width="10" height="18" fill="#1a2a4a"/>
+    <!-- Shoes -->
+    <rect x="4" y="60" width="14" height="6" fill="#111"/>
+    <rect x="18" y="60" width="14" height="6" fill="#111"/>
+    <!-- Laptop -->
+    <rect x="30" y="32" width="24" height="16" fill="#222" rx="1"/>
+    <rect x="32" y="34" width="20" height="12" fill="#0a3a6a"/>
+    <rect x="33" y="35" width="18" height="10" fill="#1a5a9a"/>
+    <!-- Screen content -->
+    <rect x="34" y="36" width="8" height="1" fill="#7ecfff" opacity="0.8"/>
+    <rect x="34" y="38" width="12" height="1" fill="#e8c87a" opacity="0.8"/>
+    <rect x="34" y="40" width="6" height="1" fill="#7ecfff" opacity="0.8"/>
+    <rect x="34" y="42" width="10" height="1" fill="#aaffaa" opacity="0.8"/>
+  </g>
+
+  <!-- Info lines -->
+  <g class="type1">
+    <text x="160" y="80" font-family="'Press Start 2P', monospace" font-size="8" fill="#7ecfff">NAME    :</text>
+    <text x="290" y="80" font-family="'Press Start 2P', monospace" font-size="8" fill="#ffffff">Caio Barbosa Lima</text>
+  </g>
+  <g class="type2">
+    <text x="160" y="100" font-family="'Press Start 2P', monospace" font-size="8" fill="#7ecfff">LOCATION:</text>
+    <text x="290" y="100" font-family="'Press Start 2P', monospace" font-size="8" fill="#ffffff">Brasília, DF — Brazil 🗺️</text>
+  </g>
+  <g class="type3">
+    <text x="160" y="120" font-family="'Press Start 2P', monospace" font-size="8" fill="#7ecfff">SCHOOL  :</text>
+    <text x="290" y="120" font-family="'Press Start 2P', monospace" font-size="8" fill="#ffffff">CEUB · Ciência da Computação</text>
+  </g>
+  <g class="type4">
+    <text x="160" y="140" font-family="'Press Start 2P', monospace" font-size="8" fill="#7ecfff">FOCUS   :</text>
+    <text x="290" y="140" font-family="'Press Start 2P', monospace" font-size="8" fill="#ffffff">Full Stack · IHC · Data</text>
+  </g>
+  <g class="type5">
+    <text x="160" y="160" font-family="'Press Start 2P', monospace" font-size="8" fill="#7ecfff">STATUS  :</text>
+    <text x="290" y="160" font-family="'Press Start 2P', monospace" font-size="8" fill="#aaffaa">▶ OPEN TO COLLABS</text>
+    <rect class="blink" x="486" y="151" width="7" height="10" fill="#aaffaa"/>
+  </g>
+
+  <!-- EXP Bars -->
+  <text x="560" y="80" font-family="'Press Start 2P', monospace" font-size="7" fill="#e8c87a">SKILLS EXP</text>
+  
+  <text x="560" y="100" font-family="'Press Start 2P', monospace" font-size="6" fill="#7ecfff">FRONTEND</text>
+  <rect x="640" y="91" width="130" height="8" fill="#0a1a2e" rx="1"/>
+  <g class="bar1"><rect x="640" y="91" width="110" height="8" fill="#7ecfff" opacity="0.8" rx="1"/></g>
+  
+  <text x="560" y="120" font-family="'Press Start 2P', monospace" font-size="6" fill="#aaffaa">BACKEND</text>
+  <rect x="640" y="111" width="130" height="8" fill="#0a1a2e" rx="1"/>
+  <g class="bar2"><rect x="640" y="111" width="95" height="8" fill="#aaffaa" opacity="0.8" rx="1"/></g>
+  
+  <text x="560" y="140" font-family="'Press Start 2P', monospace" font-size="6" fill="#e8c87a">DESIGN</text>
+  <rect x="640" y="131" width="130" height="8" fill="#0a1a2e" rx="1"/>
+  <g class="bar3"><rect x="640" y="131" width="100" height="8" fill="#e8c87a" opacity="0.8" rx="1"/></g>
+  
+  <text x="560" y="160" font-family="'Press Start 2P', monospace" font-size="6" fill="#ff8888">DATA</text>
+  <rect x="640" y="151" width="130" height="8" fill="#0a1a2e" rx="1"/>
+  <g class="bar4"><rect x="640" y="151" width="80" height="8" fill="#ff8888" opacity="0.8" rx="1"/></g>
+
+  <!-- Social badges -->
+  <a href="https://instagram.com/caiob_lima">
+    <rect x="30" y="178" width="120" height="16" fill="#833ab4" rx="2" opacity="0.9"/>
+    <text x="90" y="190" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="6" fill="white">📸 INSTAGRAM</text>
+  </a>
+  <a href="mailto:caiobarbosa.lima24@gmail.com">
+    <rect x="160" y="178" width="120" height="16" fill="#d14836" rx="2" opacity="0.9"/>
+    <text x="220" y="190" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="6" fill="white">✉ EMAIL</text>
+  </a>
+  <a href="https://github.com/CaioB1ima">
+    <rect x="290" y="178" width="120" height="16" fill="#24292e" rx="2" opacity="0.9"/>
+    <text x="350" y="190" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="6" fill="white">🐙 GITHUB</text>
+  </a>
+</svg>

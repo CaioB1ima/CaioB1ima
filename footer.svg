@@ -1,0 +1,317 @@
+<svg width="800" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes scan { 0%{transform:translateY(-180px)} 100%{transform:translateY(180px)} }
+      @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+      @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+      @keyframes fadeIn { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
+      @keyframes pulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+      
+      /* Contribution cells with staggered animation */
+      .cell { animation: fadeIn 0.3s ease both; }
+      .c0 { fill: #0d1117; }
+      .c1 { fill: #0e4429; }
+      .c2 { fill: #006d32; }
+      .c3 { fill: #26a641; }
+      .c4 { fill: #39d353; }
+      
+      .blink { animation: blink 1s step-end infinite; }
+      .float { animation: float 4s ease-in-out infinite; }
+      .scan { animation: scan 5s linear infinite; }
+      .pulse { animation: pulse 2s ease-in-out infinite; }
+      
+      /* Staggered cells */
+      .d1{animation-delay:0.02s} .d2{animation-delay:0.04s} .d3{animation-delay:0.06s}
+      .d4{animation-delay:0.08s} .d5{animation-delay:0.10s} .d6{animation-delay:0.12s}
+      .d7{animation-delay:0.14s} .d8{animation-delay:0.16s} .d9{animation-delay:0.18s}
+      .d10{animation-delay:0.20s} .d11{animation-delay:0.22s} .d12{animation-delay:0.24s}
+      .d13{animation-delay:0.26s} .d14{animation-delay:0.28s} .d15{animation-delay:0.30s}
+      .d16{animation-delay:0.32s} .d17{animation-delay:0.34s} .d18{animation-delay:0.36s}
+      .d19{animation-delay:0.38s} .d20{animation-delay:0.40s} .d21{animation-delay:0.42s}
+      
+      .lantern { animation: float 3s ease-in-out infinite; transform-origin: 50% 0%; }
+      .lantern2 { animation: float 3s 1.5s ease-in-out infinite; transform-origin: 50% 0%; }
+    </style>
+    <filter id="gf">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="gf2">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1a2e"/>
+      <stop offset="100%" stop-color="#1a1228"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="180" fill="url(#bg4)"/>
+  <rect class="scan" x="0" width="800" height="2" fill="white" opacity="0.03"/>
+
+  <!-- Section title -->
+  <text x="30" y="30" font-family="'Press Start 2P', monospace" font-size="11" fill="#e8c87a" filter="url(#gf)">▶ CONTRIBUTION.MAP</text>
+  <rect x="30" y="37" width="740" height="1" fill="#7ecfff" opacity="0.3"/>
+
+  <!-- Pixel Contribution Grid — simulating GitHub contribution chart in pixel style -->
+  <!-- 391 contributions in last year — Mon/Wed/Fri rows, sparse early, dense recent -->
+  <!-- Grid: 52 weeks × 3 shown rows, cells 8x8 with 2px gap -->
+  
+  <!-- Week labels -->
+  <text x="30" y="55" font-family="'Press Start 2P', monospace" font-size="5" fill="#7ecfff" opacity="0.6">Jun</text>
+  <text x="110" y="55" font-family="'Press Start 2P', monospace" font-size="5" fill="#7ecfff" opacity="0.6">Aug</text>
+  <text x="200" y="55" font-family="'Press Start 2P', monospace" font-size="5" fill="#7ecfff" opacity="0.6">Oct</text>
+  <text x="300" y="55" font-family="'Press Start 2P', monospace" font-size="5" fill="#7ecfff" opacity="0.6">Dec</text>
+  <text x="390" y="55" font-family="'Press Start 2P', monospace" font-size="5" fill="#7ecfff" opacity="0.6">Feb</text>
+  <text x="490" y="55" font-family="'Press Start 2P', monospace" font-size="5" fill="#7ecfff" opacity="0.6">Apr</text>
+  <text x="590" y="55" font-family="'Press Start 2P', monospace" font-size="5" fill="#7ecfff" opacity="0.6">Jun</text>
+  
+  <!-- Row labels -->
+  <text x="12" y="67" font-family="'Press Start 2P', monospace" font-size="4" fill="#7ecfff" opacity="0.5">M</text>
+  <text x="12" y="80" font-family="'Press Start 2P', monospace" font-size="4" fill="#7ecfff" opacity="0.5">W</text>
+  <text x="12" y="93" font-family="'Press Start 2P', monospace" font-size="4" fill="#7ecfff" opacity="0.5">F</text>
+
+  <!-- CONTRIBUTION GRID — 75 columns (weeks) × 3 rows (Mon/Wed/Fri) -->
+  <!-- Each cell: 8px wide, 8px tall, 1px gap = 9px stride -->
+  <!-- Sparse in first ~35 weeks (Jun-Jan), dense in last ~15 (Feb-Jun) -->
+  <!-- Matches the screenshot pattern -->
+
+  <!-- I'll generate cells manually for the key sections -->
+  <!-- Using Python-like data: 0=empty,1=light,2=med,3=high,4=max -->
+
+  <g transform="translate(24, 59)">
+    <!-- Row 0 = Mon, Row 1 = Wed, Row 2 = Fri -->
+    <!-- Weeks 0-8: Jun-Jul (sparse) -->
+    <rect class="cell d1" x="0" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect class="cell d1" x="0" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect class="cell d1" x="0" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    
+    <rect class="cell d2" x="10" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect class="cell d2" x="10" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect class="cell d2" x="10" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+
+    <rect class="cell d3" x="20" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect class="cell d3" x="20" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect class="cell d3" x="20" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+
+    <!-- weeks 3-6 -->
+    <rect x="30" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="30" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="30" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+    
+    <rect x="40" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="40" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="40" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    
+    <rect x="50" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="50" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="50" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    
+    <rect x="60" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="60" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="60" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+
+    <!-- weeks 7-14: Aug-Sep (sparse) -->
+    <rect x="70" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="70" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="70" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="80" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="80" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="80" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="90" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="90" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="90" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="100" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="100" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="100" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="110" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="110" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="110" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="120" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="120" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="120" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="130" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="130" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="130" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="140" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="140" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="140" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+
+    <!-- weeks 15-24: Oct-Nov (sparse) -->
+    <rect x="150" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="150" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="150" y="22" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="160" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="160" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="160" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="170" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="170" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="170" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="180" y="0" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="180" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="180" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="190" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="190" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="190" y="22" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="200" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="200" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="200" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="210" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="210" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="210" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="220" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="220" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="220" y="22" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="230" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="230" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="230" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="240" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="240" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="240" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+
+    <!-- weeks 25-35: Dec-Jan (sparse with a few) -->
+    <rect x="250" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="250" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="250" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="260" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="260" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="260" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="270" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="270" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="270" y="22" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="280" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="280" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="280" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="290" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="290" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="290" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="300" y="0" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="300" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="300" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="310" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="310" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="310" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="320" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="320" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="320" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="330" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="330" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="330" y="22" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="340" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="340" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="340" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="350" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="350" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="350" y="22" width="8" height="8" fill="#0d1117" rx="1"/>
+
+    <!-- weeks 36-42: Feb-Mar (increasing density) -->
+    <rect x="360" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="360" y="11" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="360" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="370" y="0" width="8" height="8" fill="#0d1117" rx="1"/>
+    <rect x="370" y="11" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="370" y="22" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="380" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="380" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="380" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="390" y="0" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="390" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="390" y="22" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="400" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="400" y="11" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="400" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="410" y="0" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="410" y="11" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="410" y="22" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="420" y="0" width="8" height="8" fill="#0e4429" rx="1"/>
+    <rect x="420" y="11" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="420" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+
+    <!-- weeks 43-48: Apr (dense) -->
+    <rect x="430" y="0" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="430" y="11" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="430" y="22" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="440" y="0" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="440" y="11" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="440" y="22" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="450" y="0" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="450" y="11" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="450" y="22" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="460" y="0" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="460" y="11" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="460" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="470" y="0" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="470" y="11" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="470" y="22" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="480" y="0" width="8" height="8" fill="#006d32" rx="1"/>
+    <rect x="480" y="11" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="480" y="22" width="8" height="8" fill="#006d32" rx="1"/>
+
+    <!-- weeks 49-52: May-Jun (very dense, max) -->
+    <rect x="490" y="0" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="490" y="11" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="490" y="22" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="500" y="0" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="500" y="11" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="500" y="22" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="510" y="0" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="510" y="11" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="510" y="22" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="520" y="0" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="520" y="11" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="520" y="22" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="530" y="0" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="530" y="11" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="530" y="22" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="540" y="0" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="540" y="11" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="540" y="22" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="550" y="0" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="550" y="11" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="550" y="22" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="560" y="0" width="8" height="8" fill="#26a641" rx="1"/>
+    <rect x="560" y="11" width="8" height="8" fill="#39d353" rx="1"/>
+    <rect x="560" y="22" width="8" height="8" fill="#26a641" rx="1"/>
+    
+    <!-- Glowing highlight on recent dense cells -->
+    <rect x="540" y="0" width="8" height="8" fill="#39d353" rx="1" filter="url(#gf)" opacity="0.6" class="pulse"/>
+    <rect x="550" y="11" width="8" height="8" fill="#39d353" rx="1" filter="url(#gf)" opacity="0.6" class="pulse"/>
+    <rect x="560" y="22" width="8" height="8" fill="#26a641" rx="1" filter="url(#gf)" opacity="0.6" class="pulse"/>
+  </g>
+
+  <!-- Stats text below grid -->
+  <text x="30" y="120" font-family="'Press Start 2P', monospace" font-size="7" fill="#7ecfff" opacity="0.7">391 CONTRIBUTIONS IN THE LAST YEAR</text>
+
+  <!-- Legend -->
+  <text x="500" y="120" font-family="'Press Start 2P', monospace" font-size="6" fill="#7ecfff" opacity="0.5">LESS</text>
+  <rect x="540" y="112" width="8" height="8" fill="#0d1117" rx="1"/>
+  <rect x="551" y="112" width="8" height="8" fill="#0e4429" rx="1"/>
+  <rect x="562" y="112" width="8" height="8" fill="#006d32" rx="1"/>
+  <rect x="573" y="112" width="8" height="8" fill="#26a641" rx="1"/>
+  <rect x="584" y="112" width="8" height="8" fill="#39d353" rx="1"/>
+  <text x="596" y="120" font-family="'Press Start 2P', monospace" font-size="6" fill="#7ecfff" opacity="0.5">MORE</text>
+
+  <!-- Footer message -->
+  <rect x="0" y="135" width="800" height="1" fill="#7ecfff" opacity="0.2"/>
+  
+  <!-- Lanterns -->
+  <g class="lantern" transform="translate(100, 145)">
+    <rect x="-5" y="-2" width="4" height="6" fill="#888"/>
+    <rect x="-6" y="4" width="12" height="18" fill="#e05050" rx="2"/>
+    <rect x="-4" y="6" width="8" height="3" fill="#ff8080" opacity="0.5"/>
+    <circle cx="0" cy="13" r="6" fill="#ff4444" opacity="0.25" filter="url(#gf)"/>
+  </g>
+  <g class="lantern2" transform="translate(700, 148)">
+    <rect x="-3" y="-2" width="4" height="5" fill="#666"/>
+    <rect x="-5" y="3" width="10" height="14" fill="#7ecfff" rx="2"/>
+    <rect x="-3" y="5" width="7" height="2" fill="#aaeeff" opacity="0.5"/>
+    <circle cx="0" cy="10" r="5" fill="#7ecfff" opacity="0.2" filter="url(#gf)"/>
+  </g>
+  
+  <text x="400" y="158" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="8" fill="#e8c87a" filter="url(#gf)">// THANKS FOR VISITING, PLAYER ONE</text>
+  <rect class="blink" x="665" y="147" width="8" height="12" fill="#e8c87a"/>
+
+  <!-- Bottom border -->
+  <rect x="0" y="174" width="800" height="3" fill="#7ecfff" opacity="0.3"/>
+  <rect x="0" y="177" width="800" height="3" fill="#e05050" opacity="0.5"/>
+</svg>
